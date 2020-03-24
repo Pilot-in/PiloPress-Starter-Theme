@@ -7,8 +7,7 @@ function enqueue_pilopress_styles() {
     wp_enqueue_style(
         'style-pilopress',
         get_stylesheet_directory_uri() . '/pilopress/style-pilopress.css',
-        false,
-        time()
+        false
     );
 }
 
@@ -20,8 +19,7 @@ function admin_enqueue_pilopress_styles() {
     wp_enqueue_style(
         'style-pilopress-admin',
         get_stylesheet_directory_uri() . '/pilopress/style-pilopress-admin.css',
-        false,
-        time()
+        false
     );
 }
 
