@@ -26,8 +26,8 @@ function admin_enqueue_pilopress_styles() {
 /**
  * Enable single meta save for options pages
  */
-add_action( 'acf/init', 'my_acfe_modules' );
-function my_acfe_modules() {
+add_action( 'acf/init', 'pip_single_meta' );
+function pip_single_meta() {
     acf_update_setting( 'pip/options/single_meta', true );
 }
 
