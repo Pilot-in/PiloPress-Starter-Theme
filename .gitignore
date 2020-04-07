@@ -1,6 +1,4 @@
 !pilopress/layouts/.gitkeep
-pilopress/layouts/
-pilopress/style-pilopress.css
-pilopress/style-pilopress.css.map
-pilopress/style-pilopress-admin.css
-pilopress/style-pilopress-admin.css.map
+!pilopress/tailwind/.gitkeep
+pilopress/layouts/*
+pilopress/tailwind/*
