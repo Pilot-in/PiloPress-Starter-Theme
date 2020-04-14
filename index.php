@@ -1,4 +1,4 @@
-
+<?php
 get_header();
 get_pip_header();
 
