@@ -1,4 +1,14 @@
 <?php
+
+/**
+ *  Theme standard - Retrocompatibility > 5.2
+ */
+if ( !function_exists('wp_body_open') ) {
+    function wp_body_open() {
+        do_action( 'wp_body_open' );
+    }
+}
+
 /**
  * Enqueue front style
  */
@@ -22,4 +32,3 @@ function admin_enqueue_pilopress_styles() {
 function pip_single_meta() {
     acf_update_setting( 'pip/options/single_meta', true );
 }
-
