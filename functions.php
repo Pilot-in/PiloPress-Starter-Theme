@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  Theme standard - Retrocompatibility > 5.2
+ *  Theme standard - Retro-compatibility > 5.2
  */
 if ( !function_exists('wp_body_open') ) {
     function wp_body_open() {

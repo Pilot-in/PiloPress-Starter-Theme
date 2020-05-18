@@ -53,9 +53,9 @@
     "location": [
         [
             {
-                "param": "page_type",
+                "param": "post_type",
                 "operator": "==",
-                "value": "front_page"
+                "value": "all"
             }
         ]
     ],
