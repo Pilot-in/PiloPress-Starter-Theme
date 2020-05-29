@@ -14,7 +14,9 @@ if ( !function_exists('wp_body_open') ) {
  */
 add_action( 'wp_enqueue_scripts', 'enqueue_pilopress_styles' );
 function enqueue_pilopress_styles() {
-    pip_enqueue();
+    if (function_exists('pip_enqueue')) {
+        pip_enqueue();
+    }
 }
 
 /**
@@ -22,7 +24,9 @@ function enqueue_pilopress_styles() {
  */
 add_action( 'admin_enqueue_scripts', 'admin_enqueue_pilopress_styles' );
 function admin_enqueue_pilopress_styles() {
-    pip_enqueue_admin();
+    if (function_exists('pip_enqueue_admin')) {
+        pip_enqueue_admin();
+    }
 }
 
 /**
