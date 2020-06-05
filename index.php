@@ -1,6 +1,8 @@
 <?php
 get_header();
 
-the_pip_content();
+if (function_exists('the_pip_content')) {
+    the_pip_content();
+}
 
 get_footer();
