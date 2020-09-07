@@ -10,9 +10,6 @@ if ( !function_exists( 'wp_body_open' ) ) {
 }
 
 /**
- * Enable single meta save for options pages
+ *  Includes
  */
-//add_action( 'acf/init', 'pip_single_meta' );
-function pip_single_meta() {
-    acf_update_setting( 'pip/options/single_meta', true );
-}
+require_once get_stylesheet_directory() . '/includes/project.php';
