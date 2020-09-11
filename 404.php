@@ -1,6 +1,8 @@
 <?php
 get_header();
-get_pip_header();
+if ( function_exists( 'get_pip_header' ) ) {
+    get_pip_header();
+}
 ?>
 
     <section>
@@ -8,5 +10,7 @@ get_pip_header();
     </section>
 
 <?php
-get_pip_footer();
+if ( function_exists( 'get_pip_footer' ) ) {
+    get_pip_footer();
+}
 get_footer();
