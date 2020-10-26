@@ -26,7 +26,6 @@ if ( !class_exists( 'Project' ) ) {
 
     /**
      * Instantiate class
-     *
      * Use "acf_get_instance( 'Project' )" to get class and use functions inside it
      *
      * @see acf_new_instance()
