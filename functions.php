@@ -12,4 +12,4 @@ if ( !function_exists( 'wp_body_open' ) ) {
 /**
  *  Includes
  */
-require_once get_stylesheet_directory() . '/includes/project.php';
+require_once get_stylesheet_directory() . '/includes/class-project.php';
