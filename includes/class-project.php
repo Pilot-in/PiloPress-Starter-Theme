@@ -31,6 +31,7 @@ if ( !class_exists( 'Project' ) ) {
      * @see acf_new_instance()
      * @see acf_get_instance()
      */
-    acf_new_instance( 'Project' );
-
+    if ( function_exists( 'acf_new_instance' ) ) {
+        acf_new_instance( 'Project' );
+    }
 }
