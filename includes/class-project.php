@@ -13,13 +13,15 @@ if ( !class_exists( 'Project' ) ) {
         public function __construct() {
             // WP hooks
             add_action( 'init', array( $this, 'init_hook' ) );
+
+            // Pilo'Press hooks
+            add_filter( 'pip/tailwind/css/after_components', array( $this, 'add_custom_css' ) );
+
+            // Local compilation
+            add_filter( 'pip/tailwind_api', '__return_false' );
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_front' ) );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
             add_filter( 'mce_css', array( $this, 'editor_style' ), 20 );
-
-            // Pilo'Press hooks
-            add_filter( 'pip/tailwind_api', '__return_false' );
-            add_filter( 'pip/tailwind/css/after_components', array( $this, 'add_custom_css' ) );
         }
 
         /**
@@ -37,7 +39,12 @@ if ( !class_exists( 'Project' ) ) {
             // wp_enqueue_script( 'alpine-js', '//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js', array( 'jquery' ), '2.8.0', true );
 
             // Enqueue Tailwind Styles
-            wp_enqueue_style( 'tailwind-styles', PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css' );
+            wp_enqueue_style(
+                'tailwind-styles',
+                PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css',
+                null,
+                filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css' )
+            );
         }
 
         /**
@@ -45,11 +52,16 @@ if ( !class_exists( 'Project' ) ) {
          */
         public function enqueue_admin() {
             // Enqueue Tailwind Styles
-            wp_enqueue_style( 'tailwind-styles-admin', PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css' );
+            wp_enqueue_style(
+                'tailwind-styles-admin',
+                PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css',
+                null,
+                filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css' )
+            );
         }
 
         /**
-         * Add custom editor style and remove WP's one
+         * Add custom editor style
          *
          * @param $stylesheets
          *
