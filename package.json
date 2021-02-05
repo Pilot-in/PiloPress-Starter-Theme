@@ -42,6 +42,7 @@
         "pre-install": "npm install",
         "build-admin": "cd pilopress/assets && gulp build-admin",
         "build-front": "cd pilopress/assets && gulp build-front",
+        "build-main": "cd pilopress/assets && gulp",
         "build": "npm run build-front && npm run build-admin"
     },
     "author": "Pilot-in",
