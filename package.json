@@ -15,10 +15,11 @@
         "@tailwindcss/forms": "^0.2.1"
     },
     "scripts": {
-        "build-admin": "cd pilopress/assets && postcss ./styles.css -o ./styles-admin.min.css --config ./admin-config",
-        "build-front": "cd pilopress/assets && postcss ./styles.css -o ./styles.min.css --config ./front-config",
+        "pre-install": "npm install",
+        "build-admin": "cd pilopress/assets && postcss ./styles.css -o ./styles-admin.min.css --config ./admin-config --verbose",
+        "build-front": "cd pilopress/assets && postcss ./styles.css -o ./styles.min.css --config ./front-config --verbose",
         "build": "npm run build-front && npm run build-admin"
     },
-    "author": "",
+    "author": "Pilot-in",
     "license": "ISC"
 }
