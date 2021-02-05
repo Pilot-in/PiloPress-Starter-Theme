@@ -1,8 +1,16 @@
 {
     "name": "pilopress-starter-theme",
     "version": "1.0.0",
-    "description": "Blank starter theme ready to use for Pilo'Press.",
-    "main": "postcss.config.js",
+    "description": "Blank starter theme ready-to-use for Pilo'Press.",
+    "main": "./pilopress/assets/gulpfile.babel.js",
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ]
+    },
+    "browserslist": [
+        "defaults"
+    ],
     "dependencies": {},
     "devDependencies": {
         "@babel/core": "^7.12.13",
@@ -12,14 +20,15 @@
         "browser-sync": "^2.26.14",
         "del": "^6.0.0",
         "fibers": "^5.0.0",
-        "gulp": "^4.0.2",
-        "gulp-babel": "^8.0.0",
         "autoprefixer": "^10.2.4",
         "cssnano": "^4.1.10",
         "postcss": "^8.2.4",
         "postcss-cli": "^8.3.1",
         "postcss-nested": "^5.0.3",
         "postcss-prefix-selector": "^1.7.2",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-concat": "^2.6.1",
         "gulp-newer": "^1.4.0",
         "gulp-postcss": "^9.0.0",
         "gulp-rename": "^2.0.0",
