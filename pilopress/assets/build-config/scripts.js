@@ -16,7 +16,7 @@ import uglify from 'gulp-uglify';
 import { get_folders } from './helpers.js';
 
 /** Config */
-import config from '../pitconfig.json';
+import config from './config';
 
 /**
  *  Scripts

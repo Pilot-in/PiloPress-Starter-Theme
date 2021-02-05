@@ -10,7 +10,7 @@ import scripts from './scripts.js';
 import styles from './styles.js';
 
 /** Config */
-import config from '../pitconfig.json';
+import config from './config';
 
 export const server = browserSync.create();
 

@@ -31,8 +31,8 @@
     },
     "scripts": {
         "pre-install": "npm install",
-        "build-admin": "cd pilopress/assets && postcss ./styles.css -o ./styles-admin.min.css --config ./admin-config --verbose",
-        "build-front": "cd pilopress/assets && postcss ./styles.css -o ./styles.min.css --config ./front-config --verbose",
+        "build-admin": "cd pilopress/assets && gulp build-admin",
+        "build-front": "cd pilopress/assets && gulp build-front",
         "build": "npm run build-front && npm run build-admin"
     },
     "author": "Pilot-in",

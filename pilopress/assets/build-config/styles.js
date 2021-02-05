@@ -18,7 +18,7 @@ import sass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
 
 /** Config */
-import config from '../pitconfig.json';
+import config from './config';
 
 /**
  *  Styles
