@@ -6,5 +6,7 @@ export default {
         path: '../../layouts/',
         css: '../../layouts/**/!(*.min).css',
         js: '../../layouts/**/!(*.min).js',
+        cssMin: '../layouts/**/*.min.css',
+        jsMin: '../layouts/**/*.min.js'
     }
 }

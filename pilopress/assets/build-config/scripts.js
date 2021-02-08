@@ -46,40 +46,6 @@ export function assets_scripts() {
         /** Export Javascript compiled / minified code */
         .pipe(gulp.dest(config.assets.dist.js, { sourcemaps: '.' }));
 
-    /**
-     *  Webpack version (test)
-     */
-    // return gulp
-    //     .src(config.assets.src.js)
-
-    //     .pipe(named())
-    //     .pipe(webpack({
-    //         module: {
-    //             rules: [
-    //                 {
-    //                     test: /\.js$/,
-    //                     use: {
-    //                         loader: 'babel-loader',
-    //                         options: {
-    //                             presets: ['@babel/preset-env']
-    //                         }
-    //                     }
-    //                 }
-    //             ]
-    //         },
-    //         mode: 'production',
-    //         devtool: 'source-map',
-    //         output: {
-    //             filename: '[name].min.js'
-    //         },
-    //         externals: {
-    //             jquery: 'jQuery'
-    //         },
-    //     }))
-
-    //     /** Export Javascript compiled / minified code */
-    //     .pipe(gulp.dest(config.assets.dist.js));
-
 }
 
 /**
