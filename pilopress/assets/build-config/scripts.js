@@ -13,7 +13,7 @@ import uglify from 'gulp-uglify';
 // import webpack from 'webpack-stream';
 
 /** Build modules */
-import { get_folders } from './helpers.js';
+import { getFolders } from './helpers.js';
 
 /** Config */
 import config from './config';
@@ -28,7 +28,7 @@ export function assets_scripts() {
      *  Gulp version
      */
     return gulp
-        .src(config.assets.src.js, { sourcemaps: true })
+        .src(config.assets.js, { sourcemaps: true })
 
         /** Compile Babel code (ES6+) */
         .pipe(babel({
@@ -44,7 +44,7 @@ export function assets_scripts() {
         }))
 
         /** Export Javascript compiled / minified code */
-        .pipe(gulp.dest(config.assets.dist.js, { sourcemaps: '.' }));
+        .pipe(gulp.dest(config.assets.path, { sourcemaps: '.' }));
 
 }
 
@@ -64,16 +64,16 @@ export function assets_scripts_lib() {
  */
 export function bundle_assets_scripts() {
     return gulp
-        .src(config.assets.dist.jsMin, { sourcemaps: true })
+        .src(config.layouts.jsMin, { sourcemaps: true })
 
         /** Put all Javascript codes in a single file */
-        .pipe(concat('bundle.min.js'))
+        .pipe(concat('layouts.min.js'))
 
         /** Compress Javascript code */
         .pipe(uglify())
 
         /** Export Javascript bundle code */
-        .pipe(gulp.dest(config.assets.dist.js, { sourcemaps: '.' }));
+        .pipe(gulp.dest(config.assets.path, { sourcemaps: '.' }));
 }
 
 /**
@@ -82,15 +82,15 @@ export function bundle_assets_scripts() {
  */
 export function layouts_scripts(done) {
 
-    const layouts = get_folders(config.layouts.dir);
+    const layouts = getFolders(config.layouts.path);
     if (layouts.length === 0)
         return done(); // nothing to do!
 
     /** For each layout layout, process files in it. */
     const tasks = layouts.map(layout => {
-        const layout_dir = path.join(config.layouts.dir, layout);
+        const layoutDir = path.join(config.layouts.path, layout);
         return gulp
-            .src(path.join(layout_dir, '/!(*.min).js'), { sourcemaps: true })
+            .src(path.join(layoutDir, '/!(*.min).js'), { sourcemaps: true })
 
             /** Compile Babel code (ES6+) */
             .pipe(babel({
@@ -106,7 +106,7 @@ export function layouts_scripts(done) {
             }))
 
             /** Export Javascript compiled / minified code */
-            .pipe(gulp.dest(layout_dir, { sourcemaps: '.' }));
+            .pipe(gulp.dest(layoutDir, { sourcemaps: '.' }));
 
     });
 
@@ -117,5 +117,5 @@ export function layouts_scripts(done) {
 /**
  *  Export all tasks as a single task
  */
-const compileScripts = gulp.parallel(gulp.series(assets_scripts, assets_scripts_lib, bundle_assets_scripts), layouts_scripts);
+const compileScripts = gulp.parallel(gulp.series(assets_scripts, /*assets_scripts_lib, */ bundle_assets_scripts), layouts_scripts);
 export default compileScripts;

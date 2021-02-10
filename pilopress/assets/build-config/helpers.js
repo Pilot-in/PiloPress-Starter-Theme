@@ -22,18 +22,18 @@ export function clean_assets_CSS() {
  */
 export function clean_layouts_assets(done) {
 
-    const layouts = get_folders(config.layouts.path);
+    const layouts = getFolders(config.layouts.path);
     if (layouts.length === 0)
         return done(); // nothing to do!
 
     /** For each layout folder, process files in it. */
     const tasks = layouts.map(layout => {
-        const layout_dir = path.join(config.layouts.path, layout);
+        const layoutDir = path.join(config.layouts.path, layout);
 
         /** Force: true because we delete a parent folder */
         const deletedPaths = del.sync([
-            path.join(layout_dir, '/*.map'),
-            path.join(layout_dir, '/*.min.*'),
+            path.join(layoutDir, '/*.map'),
+            path.join(layoutDir, '/*.min.*'),
         ], { force: true });
 
         /** Console logs deleted files */
@@ -51,17 +51,17 @@ export function clean_layouts_assets(done) {
  */
 export function clean_layouts_assets_CSS(done) {
 
-    const layouts = get_folders(config.layouts.path);
+    const layouts = getFolders(config.layouts.path);
     if (layouts.length === 0)
         return done(); // nothing to do!
 
     /** For each layout folder, process files in it. */
     const tasks = layouts.map(layout => {
-        const layout_dir = path.join(config.layouts.path, layout);
+        const layoutDir = path.join(config.layouts.path, layout);
 
         /** Force: true because we delete a parent folder */
         const deletedPaths = del.sync([
-            path.join(layout_dir, '/*.css.map'),
+            path.join(layoutDir, '/*.css.map'),
         ], { force: true });
 
         /** Console logs deleted files */
@@ -79,18 +79,18 @@ export function clean_layouts_assets_CSS(done) {
  */
 export function clean_layouts_assets_JS(done) {
 
-    const layouts = get_folders(config.layouts.path);
+    const layouts = getFolders(config.layouts.path);
     if (layouts.length === 0)
         return done(); // nothing to do!
 
     /** For each layout folder, process files in it. */
     const tasks = layouts.map(layout => {
-        const layout_dir = path.join(config.layouts.path, layout);
+        const layoutDir = path.join(config.layouts.path, layout);
 
         /** Force: true because we delete a parent folder */
         const deletedPaths = del.sync([
-            path.join(layout_dir, '/*.min.js'),
-            path.join(layout_dir, '/*.js.map'),
+            path.join(layoutDir, '/*.min.js'),
+            path.join(layoutDir, '/*.js.map'),
         ], { force: true });
 
         /** Console logs deleted files */
@@ -106,7 +106,7 @@ export function clean_layouts_assets_JS(done) {
  *  Folders
  *  - Get folders from path
  */
-export function get_folders(dir) {
+export function getFolders(dir) {
     return fs.readdirSync(dir)
         .filter(function (file) {
             return fs.statSync(path.join(dir, file)).isDirectory();

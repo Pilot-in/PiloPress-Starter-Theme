@@ -1,21 +1,22 @@
 /** Third-party modules */
-import autoPrefixer from 'autoprefixer';
+import autoprefixer from 'autoprefixer';
 import Fiber from 'fibers';
-import sassCompiler from 'sass';
+// import sassCompiler from 'sass';
 import path from 'path';
 
 /** Build modules */
-import { get_folders } from './helpers.js';
+import { getFolders } from './helpers';
+import adminConfig from '../admin-config/postcss.config';
+import frontConfig from '../front-config/postcss.config';
 
 /** Gulp modules */
 import gulp from 'gulp';
 import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
-import deporder from 'gulp-deporder';
-import postCss from 'gulp-postcss';
+import sourcemaps from 'gulp-sourcemaps';
+// import deporder from 'gulp-deporder';
+import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
-import sass from 'gulp-sass';
-import sassGlob from 'gulp-sass-glob';
 
 /** Config */
 import config from './config';
@@ -27,21 +28,25 @@ import config from './config';
 export function assets_styles() {
 
     /** Set SASS compiler as Dart Sass (better perfs) */
-    sass.compiler = sassCompiler;
+    // sass.compiler = sassCompiler;
 
     return gulp
-        .src(config.assets.src.scss, { sourcemaps: true })
+        .src(config.assets.css, { sourcemaps: true })
 
-        .pipe(deporder())
+        // .pipe(deporder())
 
         /** Allow SASS globbing import */
-        .pipe(sassGlob())
+        // .pipe(sassGlob())
 
         /** Compile SASS */
-        .pipe(sass({fiber: Fiber}).on('error', sass.logError))
+        // .pipe(sass({fiber: Fiber}).on('error', sass.logError))
+
+        // .pipe(sourcemaps.init())
 
         /** Autoprefix CSS */
-        .pipe(postCss([autoPrefixer()]))
+        .pipe(postcss(frontConfig.plugins))
+
+        // .pipe(sourcemaps.write('.'))
 
         /** Minify CSS codes */
         .pipe(cleanCSS())
@@ -52,7 +57,46 @@ export function assets_styles() {
         }))
 
         /** Export generated CSS */
-        .pipe(gulp.dest(config.assets.dist.css, { sourcemaps: '.' }));
+        .pipe(gulp.dest(config.assets.path, { sourcemaps: '.' }));
+}
+
+/**
+ *  Styles
+ *  - Handle export of Assets SASS / CSS
+ */
+export function assets_styles_admin() {
+
+    /** Set SASS compiler as Dart Sass (better perfs) */
+    // sass.compiler = sassCompiler;
+
+    return gulp
+        .src(config.assets.css, { sourcemaps: true })
+
+        // .pipe(deporder())
+
+        /** Allow SASS globbing import */
+        // .pipe(sassGlob())
+
+        /** Compile SASS */
+        // .pipe(sass({fiber: Fiber}).on('error', sass.logError))
+
+        .pipe(sourcemaps.init())
+
+        /** Autoprefix CSS */
+        .pipe(postcss(adminConfig.plugins))
+
+        .pipe(sourcemaps.write('.'))
+
+        /** Minify CSS codes */
+        .pipe(cleanCSS())
+
+        /** Rename generated CSS */
+        .pipe(rename({
+            suffix: '.min'
+        }))
+
+        /** Export generated CSS */
+        .pipe(gulp.dest(config.assets.path, { sourcemaps: '.' }));
 }
 
 /**
@@ -61,7 +105,7 @@ export function assets_styles() {
  */
 export function bundle_assets_styles() {
     return gulp
-        .src(config.assets.dist.cssMin, { sourcemaps: true })
+        .src(config.assets.css, { sourcemaps: true })
 
         /** Minify CSS codes */
         .pipe(cleanCSS())
@@ -70,7 +114,7 @@ export function bundle_assets_styles() {
         .pipe(concat('bundle.min.css'))
 
         /** Export Javascript bundle code */
-        .pipe(gulp.dest(config.assets.dist.css, { sourcemaps: '.' }));
+        .pipe(gulp.dest(config.assets.path, { sourcemaps: '.' }));
 }
 
 /**
@@ -80,28 +124,30 @@ export function bundle_assets_styles() {
 export function layouts_styles(done) {
 
     /** Set SASS compiler as Dart Sass (better perfs) */
-    sass.compiler = sassCompiler;
+    // sass.compiler = sassCompiler;
 
-    const layouts = get_folders(config.layouts.dir);
+    const layouts = getFolders(config.layouts.path);
     if (layouts.length === 0)
         return done(); // nothing to do!
 
     /** For each layout folder, process files in it. */
     const tasks = layouts.map(layout => {
-        const layout_dir = path.join(config.layouts.dir, layout);
-        return gulp
-            .src(path.join(layout_dir, '*.scss'), { sourcemaps: true })
 
-            .pipe(deporder())
+        const layoutDir = path.join(config.layouts.path, layout);
+
+        return gulp
+            .src(path.join(layoutDir, '!(*.min).css'))
+
+            // .pipe(deporder())
 
             /** Allow SASS globbing import */
-            .pipe(sassGlob())
+            // .pipe(sassGlob())
 
             /** Compile SASS */
-            .pipe(sass({fiber: Fiber}).on('error', sass.logError))
+            // .pipe(sass({fiber: Fiber}).on('error', sass.logError))
 
             /** Autoprefix CSS */
-            .pipe(postCss([autoPrefixer()]))
+            .pipe(postcss(frontConfig.plugins))
 
             /** Minify CSS codes */
             .pipe(cleanCSS())
@@ -112,7 +158,7 @@ export function layouts_styles(done) {
             }))
 
             /** Export generated CSS */
-            .pipe(gulp.dest(layout_dir, { sourcemaps: '.' }));
+            .pipe(gulp.dest(layoutDir, { sourcemaps: '.' }));
 
     });
 

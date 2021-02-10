@@ -23,8 +23,8 @@ export default function init_BS() {
     /** Init Browser Sync server */
     server.init({
         notify: false,
-        proxy: config.app.url,
-        host: config.app.url,
+        proxy: config.site.url,
+        host: config.site.url,
 
         /** Disable "clicks, scroll, submits" by default on others devices */
         ghostMode: false,
@@ -34,7 +34,7 @@ export default function init_BS() {
 
         /** Reload server when updating php, sass, js files */
         files: [
-            config.php.src,
+            config.watchFiles.php,
         ],
 
         /** Reload on those specifics events */
@@ -42,10 +42,8 @@ export default function init_BS() {
     });
 
     /** Watch those files and launch tasks if they change */
-    gulp.watch(config.assets.src.js, gulp.series(clean_assets_JS, scripts, reload_BS));
-    gulp.watch(config.assets.src.scss, gulp.series(clean_assets_CSS, styles, reload_BS));
-    gulp.watch(config.layouts.src.scss, gulp.series(clean_layouts_assets_CSS, styles, reload_BS));
-    gulp.watch(config.layouts.src.js, gulp.series(clean_layouts_assets_JS, scripts, reload_BS));
+    gulp.watch(config.watchFiles.css, gulp.series(clean_assets_CSS, clean_layouts_assets_CSS, styles, reload_BS));
+    // gulp.watch(config.watchFiles.js, gulp.series(clean_assets_JS, clean_layouts_assets_JS, scripts, reload_BS));
 }
 
 /**
