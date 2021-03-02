@@ -41,7 +41,7 @@ if ( !class_exists( 'Project' ) ) {
             // Enqueue Tailwind Styles
             wp_enqueue_style(
                 'tailwind-styles',
-                PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css',
+                PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_FILENAME . '.min.css',
                 null,
                 filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css' )
             );
@@ -54,7 +54,7 @@ if ( !class_exists( 'Project' ) ) {
             // Enqueue Tailwind Styles
             wp_enqueue_style(
                 'tailwind-styles-admin',
-                PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css',
+                PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css',
                 null,
                 filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css' )
             );
