@@ -39,12 +39,15 @@ if ( !class_exists( 'Project' ) ) {
             // wp_enqueue_script( 'alpine-js', '//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js', array( 'jquery' ), '2.8.0', true );
 
             // Enqueue Tailwind Styles
-            wp_enqueue_style(
-                'tailwind-styles',
-                PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_FILENAME . '.min.css',
-                null,
-                filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css' )
-            );
+            $front_style_path = PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css';
+            if ( file_exists( $front_style_path ) ) {
+                wp_enqueue_style(
+                    'tailwind-styles',
+                    PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_FILENAME . '.min.css',
+                    null,
+                    filemtime( $front_style_path )
+                );
+            }
         }
 
         /**
@@ -52,12 +55,15 @@ if ( !class_exists( 'Project' ) ) {
          */
         public function enqueue_admin() {
             // Enqueue Tailwind Styles
-            wp_enqueue_style(
-                'tailwind-styles-admin',
-                PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css',
-                null,
-                filemtime( PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css' )
-            );
+            $admin_style_path = PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css';
+            if ( file_exists( $admin_style_path ) ) {
+                wp_enqueue_style(
+                    'tailwind-styles-admin',
+                    PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_ADMIN_FILENAME . '.min.css',
+                    null,
+                    filemtime( $admin_style_path )
+                );
+            }
         }
 
         /**
