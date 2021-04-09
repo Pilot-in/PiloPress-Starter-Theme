@@ -37,17 +37,6 @@ if ( !class_exists( 'Project' ) ) {
         public function enqueue_front() {
             // AlpineJS
             // wp_enqueue_script( 'alpine-js', '//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js', array( 'jquery' ), '2.8.0', true );
-
-            // Enqueue Tailwind Styles
-            $front_style_path = PIP_THEME_ASSETS_PATH . PIP_THEME_STYLE_FILENAME . '.min.css';
-            if ( file_exists( $front_style_path ) ) {
-                wp_enqueue_style(
-                    'tailwind-styles',
-                    PIP_THEME_ASSETS_URL . PIP_THEME_STYLE_FILENAME . '.min.css',
-                    null,
-                    filemtime( $front_style_path )
-                );
-            }
         }
 
         /**
