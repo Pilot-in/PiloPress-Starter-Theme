@@ -11,6 +11,12 @@ if ( !class_exists( 'Project' ) ) {
          * Project constructor.
          */
         public function __construct() {
+
+            // Check for Pilo'Press first
+            if ( !class_exists( 'PiloPress' ) ) {
+                return;
+            }
+
             // WP hooks
             add_action( 'init', array( $this, 'init_hook' ) );
 
