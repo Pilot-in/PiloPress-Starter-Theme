@@ -23,11 +23,11 @@ if ( !class_exists( 'Project' ) ) {
             // Pilo'Press hooks
             add_filter( 'pip/tailwind/css/after_components', array( $this, 'add_custom_css' ) );
 
-            // Local compilation
+            // Uncomment below to enable Local TailwindCSS compilation
             //add_filter( 'pip/tailwind_api', '__return_false' );
-            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_front' ) );
-            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
-            add_filter( 'mce_css', array( $this, 'editor_style' ), 20 );
+            //add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_front' ) );
+            //add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
+            //add_filter( 'mce_css', array( $this, 'editor_style' ), 20 );
         }
 
         /**
