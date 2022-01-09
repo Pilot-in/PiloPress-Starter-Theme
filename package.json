@@ -5,20 +5,25 @@
     "main": "postcss.config.js",
     "dependencies": {
         "autoprefixer": "^10.2.1",
-        "cssnano": "^4.1.10",
         "postcss": "^8.2.4",
         "postcss-cli": "^8.3.1",
+        "postcss-import": "^14.0.2",
+        "postcss-nesting": "^10.1.1",
         "postcss-prefix-selector": "^1.7.2",
-        "tailwindcss": "^2.0.2"
+        "postcss-preset-env": "^7.2.0",
+        "tailwindcss": "^3.0.12"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.2.1"
     },
     "scripts": {
         "pre-install": "npm install",
-        "build-admin": "cd pilopress/assets && postcss ./styles.css -o ./styles-admin.min.css --config ./admin-config --verbose",
-        "build-front": "cd pilopress/assets && postcss ./styles.css -o ./styles.min.css --config ./front-config --verbose",
-        "build": "npm run build-front && npm run build-admin"
+        "watch-admin": "cd pilopress/assets && npx tailwindcss -i ./styles.css -o ./styles-admin.min.css --postcss ./admin-config/postcss.config.js --watch --minify",
+        "watch-front": "cd pilopress/assets && npx tailwindcss -i ./styles.css -o ./styles.min.css --postcss ./front-config/postcss.config.js --watch --minify",
+        "build-admin": "cd pilopress/assets && npx tailwindcss -i ./styles.css -o ./styles-admin.min.css --postcss ./admin-config/postcss.config.js --minify",
+        "build-front": "cd pilopress/assets && npx tailwindcss -i ./styles.css -o ./styles.min.css --postcss ./front-config/postcss.config.js --minify",
+        "build": "npm run build-front && npm run build-admin",
+        "watch": "npm run watch-front && npm run watch-admin"
     },
     "author": "Pilot-in",
     "license": "ISC"
