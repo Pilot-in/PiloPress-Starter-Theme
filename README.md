@@ -1,6 +1,6 @@
 # Pilo'Press - Starter theme
 
-This theme is a blank starter theme.
+This theme is a blank starter theme to easily use Pilo'Press.
 
 ## Local TailwindCSS build
 
